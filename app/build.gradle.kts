@@ -1,5 +1,6 @@
 plugins {
     id(libs.plugins.custom.applicationConventionPlugin.get().pluginId)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -31,5 +32,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(projects.ui)
+    implementation(projects.core.common)
 
 }

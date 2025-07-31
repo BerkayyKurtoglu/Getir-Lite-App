@@ -72,6 +72,7 @@ object PluginConstants {
         const val KotlinxCoroutinesCore = "kotlinx.coroutines.core"
         const val KotlinxCoroutinesAndroid = "kotlinx.coroutines.android"
         const val KotlinxCoroutines = "kotlinx.coroutines"
+        const val KotlinSerializationJson = "kotlinx-serialization-json"
 
         // Gradle Plugins
         const val AndroidGradlePlugin = "android.gradleplugin"
@@ -124,6 +125,7 @@ object PluginConstants {
         const val KotlinAndroid = "org.jetbrains.kotlin.android"
         const val KotlinParcelize = "org.jetbrains.kotlin.plugin.parcelize"
         const val KotlinCompose = "org.jetbrains.kotlin.plugin.compose"
+        const val KotlinSerialization = "org.jetbrains.kotlin.plugin.serialization"
 
         // Dependency Injection
         const val Hilt = "com.google.dagger.hilt.android"

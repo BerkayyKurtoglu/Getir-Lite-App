@@ -26,3 +26,5 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "GetirLite"
 include(":app")
 include(":ui")
+include(":core")
+include(":core:common")

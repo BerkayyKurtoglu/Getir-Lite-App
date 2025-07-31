@@ -1,4 +1,4 @@
-package com.berkay.getirlite
+package com.berkay.getirlite.ui
 
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
