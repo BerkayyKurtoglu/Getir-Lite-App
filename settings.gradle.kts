@@ -1,4 +1,6 @@
 pluginManagement {
+    includeBuild("build-logic")
+
     repositories {
         google {
             content {
@@ -19,6 +21,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Getir Lite"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "GetirLite"
 include(":app")
- 
