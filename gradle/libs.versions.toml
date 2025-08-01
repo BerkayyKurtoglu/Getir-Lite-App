@@ -22,6 +22,18 @@ uiGraphicsAndroid = "1.8.3"
 runtimeAndroid = "1.8.3"
 jetbrainsKotlinJvm = "2.1.0"
 
+# Network
+network_retrofit = "2.9.0"
+network_okhttp = "5.1.0"
+network_chucker = "4.2.0"
+
+# Google
+google_gson = "2.13.1"
+materialVersion = "1.12.0"
+
+kotlinx_coroutines = "1.10.2"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -47,10 +59,28 @@ androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compi
 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
+
+# Google
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "google_gson" }
+
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 androidx-ui-graphics-android = { group = "androidx.compose.ui", name = "ui-graphics-android", version.ref = "uiGraphicsAndroid" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
+
+# Network
+network-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "network_retrofit" }
+network-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "network_retrofit" }
+network-okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "network_okhttp" }
+network-okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
+network-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
+network-chucker-library = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "network_chucker" }
+network-chucker-library-noop = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "network_chucker" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+
+[bundles]
+network = ["network-retrofit", "network-gson-converter", "network-okhttp", "network-okhttp-logging", "google-gson"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
