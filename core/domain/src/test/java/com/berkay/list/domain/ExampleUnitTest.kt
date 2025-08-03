@@ -1,6 +1,6 @@
-package com.berkay.getirlite
+package com.berkay.list.domain
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

@@ -23,4 +23,9 @@ dependencies {
     implementation(projects.ui)
     implementation(projects.core.common)
     implementation(projects.core.contract)
+
+    implementation(projects.core.domain)
+
+    implementation(projects.feature.common.data)
+    implementation(projects.feature.common.domain)
 }

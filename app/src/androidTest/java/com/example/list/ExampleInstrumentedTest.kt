@@ -1,4 +1,4 @@
-package com.berkay.getirlite
+package com.example.list
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.berkay.getirlite", appContext.packageName)
+        assertEquals("com.example.list.test", appContext.packageName)
     }
 }

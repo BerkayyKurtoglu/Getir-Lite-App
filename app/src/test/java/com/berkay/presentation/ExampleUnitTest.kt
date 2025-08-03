@@ -1,4 +1,4 @@
-package com.berkay.getirlite
+package com.berkay.presentation
 
 import org.junit.Assert.*
 import org.junit.Test
