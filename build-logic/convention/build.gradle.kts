@@ -34,5 +34,21 @@ gradlePlugin {
             id = "gradlePlugins.androidApplicationConventionPlugin"
             implementationClass = "com.berkay.build_logic.convention.plugins.AndroidApplicationConventionPlugin"
         }
+        register("androidDataLibraryConventionPlugin") {
+            id = "gradlePlugins.androidDataLibraryConventionPlugin"
+            implementationClass = "com.berkay.build_logic.convention.plugins.AndroidDataLibraryConventionPlugin"
+        }
+        register("androidDomainLibraryConventionPlugin") {
+            id = "gradlePlugins.androidDomainLibraryConventionPlugin"
+            implementationClass = "com.berkay.build_logic.convention.plugins.AndroidDomainLibraryConventionPlugin"
+        }
+        register("androidComposeLibraryConventionPlugin") {
+            id = "gradlePlugins.androidComposeLibraryConventionPlugin"
+            implementationClass = "com.berkay.build_logic.convention.plugins.AndroidComposeLibraryConventionPlugin"
+        }
+        register("kotlinLibraryConventionPlugin") {
+            id = "gradlePlugins.kotlinLibraryConventionPlugin"
+            implementationClass = "com.berkay.build_logic.convention.plugins.KotlinLibraryConventionPlugin"
+        }
     }
 }

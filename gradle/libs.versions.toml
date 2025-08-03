@@ -58,7 +58,6 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
-
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
 
 # Google
@@ -90,6 +89,10 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 custom-applicationConventionPlugin = { id = "gradlePlugins.androidApplicationConventionPlugin", version = "unspecified" }
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+custom-dataLibraryConventionPlugin = { id = "gradlePlugins.androidDataLibraryConventionPlugin", version = "unspecified" }
+custom-domainLibraryConventionPlugin = { id = "gradlePlugins.androidDomainLibraryConventionPlugin", version = "unspecified" }
+custom-composeLibraryConventionPlugin = { id = "gradlePlugins.androidComposeLibraryConventionPlugin", version = "unspecified" }
+custom-kotlinLibraryConventionPlugin = { id = "gradlePlugins.kotlinLibraryConventionPlugin", version = "unspecified" }
