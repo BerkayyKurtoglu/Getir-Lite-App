@@ -29,6 +29,14 @@ internal class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureAndroidCompose(this)
 
+                packaging {
+                    resources {
+                        excludes += "/META-INF/DEPENDENCIES"
+                        excludes += "/META-INF/LICENSE*"
+                        excludes += "/META-INF/NOTICE*"
+                    }
+                }
+
                 defaultConfig {
                     applicationId = AppConfig.APPLICATION_ID
                     minSdk = AppConfig.MIN_SDK_VERSION
@@ -44,11 +52,6 @@ internal class AndroidApplicationConventionPlugin : Plugin<Project> {
                         getDefaultProguardFile(PluginConstants.Defaults.ProguardAndroidRules),
                         PluginConstants.Defaults.ProguardRules
                     )
-                }
-                packaging {
-                    resources {
-                        merges += "META-INF/annotated_classes.txt"
-                    }
                 }
             }
 

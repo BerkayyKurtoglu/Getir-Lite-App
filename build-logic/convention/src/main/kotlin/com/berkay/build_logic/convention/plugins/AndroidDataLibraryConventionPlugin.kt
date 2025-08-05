@@ -9,9 +9,11 @@ import com.berkay.build_logic.convention.extension.addProject
 import com.berkay.build_logic.convention.extension.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 
 class AndroidDataLibraryConventionPlugin : Plugin<Project> {
 
@@ -22,7 +24,6 @@ class AndroidDataLibraryConventionPlugin : Plugin<Project> {
                 apply(plugin = PluginConstants.Plugins.KotlinAndroid)
                 apply(plugin = PluginConstants.Plugins.Ksp)
                 apply(plugin = PluginConstants.Plugins.Hilt)
-                //apply(plugin = PluginConstants.Plugins.KotlinSerialization)
             }
 
             extensions.configure<LibraryExtension> {
@@ -30,10 +31,12 @@ class AndroidDataLibraryConventionPlugin : Plugin<Project> {
 
                 packaging {
                     resources {
-                        merges += "META-INF/annotated_classes.txt"
+                        excludes += "/META-INF/LICENSE.md"
                     }
                 }
-
+                tasks.withType<Test>().configureEach {
+                    jvmArgs("-XX:+EnableDynamicAgentLoading")
+                }
                 defaultConfig {
                     minSdk = AppConfig.MIN_SDK_VERSION
 
@@ -52,11 +55,9 @@ class AndroidDataLibraryConventionPlugin : Plugin<Project> {
                     addProject(PluginConstants.Projects.CORE_DOMAIN)
                     addProject(PluginConstants.Projects.CORE_DATA)
                     addImplementation(PluginConstants.Libraries.KotlinxCoroutinesCore)
-                    //addImplementation(PluginConstants.Libraries.KotlinSerializationJson)
 
                     addImplementation(PluginConstants.Libraries.DaggerHilt)
                     addKsp(PluginConstants.Libraries.DaggerHiltCompiler)
-
                 }
             }
         }
