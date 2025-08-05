@@ -1,0 +1,38 @@
+package com.berkay.test
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.jupiter.api.extension.AfterEachCallback
+import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.ExtensionContext
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class MainCoroutineExtension(private val useUnconfinedDispatcher: Boolean = false) :
+    BeforeEachCallback, AfterEachCallback {
+
+    lateinit var scheduler: TestCoroutineScheduler
+        private set
+
+    lateinit var dispatcher: TestDispatcher
+        private set
+
+    override fun beforeEach(context: ExtensionContext?) {
+        scheduler = TestCoroutineScheduler()
+        dispatcher = if (useUnconfinedDispatcher) {
+            UnconfinedTestDispatcher(scheduler)
+        } else {
+            StandardTestDispatcher(scheduler)
+        }
+        Dispatchers.setMain(dispatcher)
+    }
+
+    override fun afterEach(context: ExtensionContext?) {
+        Dispatchers.resetMain()
+    }
+}

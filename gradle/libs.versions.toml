@@ -1,10 +1,14 @@
 [versions]
 agp = "8.11.1"
+animation = "1.8.3"
+coilCompose = "2.7.0"
+constraintlayoutCompose = "1.1.1"
 kotlin = "2.1.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCollectionsImmutable = "0.4.0"
 lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
 composeBom = "2024.09.00"
@@ -32,10 +36,21 @@ google_gson = "2.13.1"
 materialVersion = "1.12.0"
 
 kotlinx_coroutines = "1.10.2"
+uiToolingPreviewAndroid = "1.8.3"
 
+# Test
+test_junit_bom = "5.13.4"
+junit-jupiter = "5.13.4"
+junit-platform = "1.13.4"
+mockk = "1.14.5"
+turbine = "1.2.1"
 
 [libraries]
+androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+coil = { module = "io.coil-kt:coil", version.ref = "coilCompose" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -53,6 +68,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
@@ -77,9 +93,37 @@ network-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-inter
 network-chucker-library = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "network_chucker" }
 network-chucker-library-noop = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "network_chucker" }
 material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+
+# JUnit Jupiter API & Engine
+test-junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "test_junit_bom" }
+test-junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit-jupiter" }
+test-junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit-jupiter" }
+test-junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit-jupiter" }
+
+# JUnit Jupiter runner (for IDE / Gradle support)
+test-junit-platform-runner = { group = "org.junit.platform", name = "junit-platform-runner", version.ref = "junit-platform" }
+
+# Coroutine test support
+test-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+# MockK
+test-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+
+# Turbine for testing Flows
+test-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [bundles]
 network = ["network-retrofit", "network-gson-converter", "network-okhttp", "network-okhttp-logging", "google-gson"]
+test-all = [
+    "test-junit-jupiter-api",
+    "test-junit-jupiter-engine",
+    "test-junit-jupiter-params",
+    "test-junit-platform-runner",
+    "test-kotlinx-coroutines",
+    "test-mockk",
+    "test-turbine",
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -90,6 +134,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+android-junit5 = { id = "de.mannodermaus.android-junit5", version = "1.13.1.0" }
 
 custom-applicationConventionPlugin = { id = "gradlePlugins.androidApplicationConventionPlugin", version = "unspecified" }
 custom-dataLibraryConventionPlugin = { id = "gradlePlugins.androidDataLibraryConventionPlugin", version = "unspecified" }
