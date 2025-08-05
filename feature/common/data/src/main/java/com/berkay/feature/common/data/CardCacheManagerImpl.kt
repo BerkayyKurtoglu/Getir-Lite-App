@@ -1,7 +1,7 @@
 package com.berkay.feature.common.data
 
 import com.berkay.feature.common.domain.CardCacheManager
-import com.berkay.feature.common.domain.CardCacheModel
+import com.berkay.feature.common.domain.CartCacheModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -11,10 +11,10 @@ import javax.inject.Singleton
 @Singleton
 class CardCacheManagerImpl @Inject constructor() : CardCacheManager {
 
-    private val _cartCache = MutableStateFlow(emptyList<CardCacheModel>())
+    private val _cartCache = MutableStateFlow(emptyList<CartCacheModel>())
     override val cartCache = _cartCache.asStateFlow()
 
-    override fun increaseCountByIdOrAdd(item: CardCacheModel) {
+    override fun increaseCountByIdOrAdd(item: CartCacheModel) {
         _cartCache.update { currentList ->
             val existingItem = currentList.find { it.id == item.id }
 
@@ -41,6 +41,12 @@ class CardCacheManagerImpl @Inject constructor() : CardCacheManager {
                     else -> item
                 }
             }
+        }
+    }
+
+    override fun emptyCart() {
+        _cartCache.update {
+            emptyList()
         }
     }
 }
