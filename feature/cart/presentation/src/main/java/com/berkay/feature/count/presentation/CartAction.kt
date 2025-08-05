@@ -10,5 +10,6 @@ sealed interface CartAction {
 
     data class AddProduct(val product: CartProduct) : CartAction
     data class RemoveProduct(val product: CartProduct) : CartAction
+    data class OnProductClick(val product: CartProduct) : CartAction
 }
 

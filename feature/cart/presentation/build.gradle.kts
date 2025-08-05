@@ -10,4 +10,5 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.presentation)
     implementation(projects.feature.common.domain)
+    implementation(projects.feature.detail.contract)
 }

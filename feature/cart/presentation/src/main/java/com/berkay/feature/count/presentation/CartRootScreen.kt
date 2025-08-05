@@ -61,6 +61,9 @@ fun CartRootScreen() {
             },
             onRemoveClick = {
                 viewModel.handleAction(CartAction.RemoveProduct(it))
+            },
+            onProductClick = {
+                viewModel.handleAction(CartAction.OnProductClick(it))
             }
         )
     }

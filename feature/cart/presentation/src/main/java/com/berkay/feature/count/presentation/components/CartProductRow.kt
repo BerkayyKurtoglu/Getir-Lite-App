@@ -27,6 +27,7 @@ import com.berkay.feature.count.presentation.CartProduct
 import com.berkay.ui.components.contional.Conditional
 import com.berkay.ui.components.horizontalcartcontrolbutton.HorizontalCardControlButton
 import com.berkay.ui.components.horizontalcartcontrolbutton.HorizontalCardControlButtonSizeConfig
+import com.berkay.ui.extensions.noRippleClickable
 import com.berkay.ui.theme.LocalColorScheme
 
 @Composable
@@ -35,13 +36,17 @@ fun CartProductRow(
     product: CartProduct,
     onAddClick: () -> Unit,
     onRemoveClick: () -> Unit,
+    onProductClick: () -> Unit
 ) {
     val localColorScheme = LocalColorScheme.current
 
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(12.dp),
+            .padding(12.dp)
+            .noRippleClickable {
+                onProductClick()
+            },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

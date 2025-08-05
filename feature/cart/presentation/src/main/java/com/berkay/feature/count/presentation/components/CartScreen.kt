@@ -18,7 +18,8 @@ fun CartScreen(
     innerPaddings: PaddingValues,
     products: PersistentList<CartProduct>,
     onAddClick: (CartProduct) -> Unit,
-    onRemoveClick: (CartProduct) -> Unit
+    onRemoveClick: (CartProduct) -> Unit,
+    onProductClick: (CartProduct) -> Unit
 ) {
     val localColorScheme = LocalColorScheme.current
 
@@ -42,7 +43,8 @@ fun CartScreen(
                 ),
                 product = item,
                 onAddClick = { onAddClick(item) },
-                onRemoveClick = { onRemoveClick(item) }
+                onRemoveClick = { onRemoveClick(item) },
+                onProductClick = { onProductClick(item) }
             )
 
             if (index < products.lastIndex) {

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.berkay.common.Navigator
 import com.berkay.feature.common.domain.CardCacheManager
+import com.berkay.feature.detail.contract.ProductDetailRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,6 +43,10 @@ class CartViewModel @Inject constructor(
 
             is CartAction.RemoveProduct -> {
                 removeProductFromCart(action.product)
+            }
+
+            is CartAction.OnProductClick -> {
+                navigateToProductDetail(action.product)
             }
 
             CartAction.OnBackClicked -> {
@@ -90,6 +95,20 @@ class CartViewModel @Inject constructor(
 
     private fun removeProductFromCart(product: CartProduct) {
         cacheManager.decreaseCountById(product.id)
+    }
+
+    private fun navigateToProductDetail(product: CartProduct){
+        viewModelScope.launch {
+            navigator.navigate(ProductDetailRoute(
+                id = product.id,
+                name = product.name,
+                imageUrl = product.imageUrl,
+                price = product.price,
+                attribute = product.attribute,
+                cartPrice = _uiState.value.totalPrice,
+                count = product.count
+            ))
+        }
     }
 
     private fun removeAllProductsFromCart() {
