@@ -33,6 +33,12 @@ fun ProductCard(
     onAddClick: () -> Unit,
     onRemoveClick: () -> Unit,
 ) {
+    val borderColor = if (productUiModel.isSelected) {
+        GetirColors.corePrimaryColor
+    } else {
+        GetirColors.corePrimaryContainerColor
+    }
+
     Column(
         modifier = modifier
             .width(108.dp)
@@ -49,7 +55,7 @@ fun ProductCard(
                     .size(100.dp)
                     .border(
                         width = 1.dp,
-                        color = GetirColors.corePrimaryContainerColor,
+                        color = borderColor,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .clip(RoundedCornerShape(16.dp))
@@ -90,7 +96,7 @@ fun ProductCard(
 
         Spacer(modifier = Modifier.height(2.dp))
 
-        if (productUiModel.shouldShowAttribute){
+        if (productUiModel.shouldShowAttribute) {
             Text(
                 text = productUiModel.attribute,
                 fontSize = 12.sp,

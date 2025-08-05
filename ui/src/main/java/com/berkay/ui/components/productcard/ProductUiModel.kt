@@ -16,4 +16,7 @@ data class ProductUiModel(
         get() {
             return attribute.isNotEmpty()
         }
+
+    val isSelected: Boolean
+        get() = count > 0
 }
