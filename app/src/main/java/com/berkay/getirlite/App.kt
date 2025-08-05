@@ -1,35 +1,25 @@
 package com.berkay.getirlite
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.berkay.common.NavigationCommand
 import com.berkay.common.Navigator
+import com.berkay.feature.count.common.CartScreenRoute
+import com.berkay.feature.count.presentation.CartRootScreen
+import com.berkay.feature.detail.contract.ProductDetailRoute
+import com.berkay.feature.detail.presentation.ProductDetailRootScreen
+import com.berkay.feature.products.contract.ProductsScreenRoute
+import com.berkay.feature.products.presentation.ProductsRootScreen
 import com.berkay.getirlite.navigation.NavigationHandler
-import com.berkay.ui.theme.GetirLiteColorScheme
-import com.berkay.ui.theme.LocalColorScheme
-import kotlinx.serialization.Serializable
-
-@Serializable
-data object TestScreenRoute : NavigationCommand.Destination
+import com.berkay.getirlite.ui.enterTransition
+import com.berkay.getirlite.ui.exitTransition
+import com.berkay.getirlite.ui.popEnterTransition
+import com.berkay.getirlite.ui.popExitTransition
 
 @Composable
 fun App(
     navigator: Navigator,
-    localColorScheme: GetirLiteColorScheme = LocalColorScheme.current,
 ) {
     val navController = rememberNavController()
 
@@ -40,29 +30,20 @@ fun App(
 
     NavHost(
         navController = navController,
-        startDestination = TestScreenRoute
+        startDestination = ProductsScreenRoute,
+        enterTransition = enterTransition,
+        exitTransition = exitTransition,
+        popEnterTransition = popEnterTransition,
+        popExitTransition = popExitTransition
     ) {
-        composable<TestScreenRoute> {
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                contentWindowInsets = ScaffoldDefaults.contentWindowInsets,
-                topBar = {
-                    Row(
-                        modifier = Modifier
-                            .height(88.dp)
-                            .fillMaxWidth()
-                            .background(color = localColorScheme.corePrimaryColor)
-                    ) {
-
-                    }
-                }
-            ) { innerPadding ->
-                Column(
-                    Modifier.padding(innerPadding)
-                ) {
-                    Text("Example Screen")
-                }
-            }
+        composable<ProductsScreenRoute> {
+            ProductsRootScreen()
+        }
+        composable<ProductDetailRoute> {
+            ProductDetailRootScreen()
+        }
+        composable<CartScreenRoute> {
+            CartRootScreen()
         }
     }
 
