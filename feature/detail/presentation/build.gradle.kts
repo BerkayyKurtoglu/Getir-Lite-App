@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation(projects.feature.detail.contract)
     implementation(projects.feature.common.domain)
+    implementation(projects.feature.cart.contract)
     implementation(projects.core.common)
     implementation(projects.core.presentation)
 

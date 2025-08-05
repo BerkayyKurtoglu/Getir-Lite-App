@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.berkay.ui.R
 import com.berkay.ui.components.cardtotalbutton.CartTotalButton
+import com.berkay.ui.components.contional.Conditional
 import com.berkay.ui.extensions.noRippleClickable
 import com.berkay.ui.theme.LocalColorScheme
 
@@ -25,7 +26,9 @@ fun ProductDetailTopBar(
     modifier: Modifier = Modifier,
     titleText: String,
     cartPrice: String,
+    showCartTotalButton: Boolean,
     onBackClicked: () -> Unit,
+    onCartClicked: () -> Unit
 ) {
 
     val localColorScheme = LocalColorScheme.current
@@ -84,15 +87,18 @@ fun ProductDetailTopBar(
                 fontSize = 14.sp
             )
 
-            CartTotalButton(
-                modifier = Modifier
-                    .constrainAs(count) {
-                        end.linkTo(parent.end, 16.dp)
-                        top.linkTo(parent.top, 8.dp)
-                        bottom.linkTo(parent.bottom, 8.dp)
-                    },
-                cartPrice = cartPrice
-            )
+            Conditional({showCartTotalButton}) {
+                CartTotalButton(
+                    modifier = Modifier
+                        .constrainAs(count) {
+                            end.linkTo(parent.end, 16.dp)
+                            top.linkTo(parent.top, 8.dp)
+                            bottom.linkTo(parent.bottom, 8.dp)
+                        }
+                        .noRippleClickable { onCartClicked() },
+                    cartPrice = cartPrice
+                )
+            }
         }
     }
 

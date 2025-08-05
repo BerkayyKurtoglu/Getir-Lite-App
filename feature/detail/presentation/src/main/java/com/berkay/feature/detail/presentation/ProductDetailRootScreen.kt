@@ -20,8 +20,12 @@ fun ProductDetailRootScreen() {
             ProductDetailTopBar(
                 titleText = uiState.title,
                 cartPrice = uiState.cartPriceString,
+                showCartTotalButton = uiState.showCartTotalButton,
                 onBackClicked = {
                     viewModel.handleAction(ProductDetailAction.OnBackClick)
+                },
+                onCartClicked = {
+                    viewModel.handleAction(ProductDetailAction.OnCartClick)
                 }
             )
         },

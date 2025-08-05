@@ -7,10 +7,13 @@ import androidx.navigation.toRoute
 import com.berkay.common.Navigator
 import com.berkay.feature.common.domain.CardCacheManager
 import com.berkay.feature.common.domain.CartCacheModel
+import com.berkay.feature.count.common.CartScreenRoute
 import com.berkay.feature.detail.contract.ProductDetailRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,6 +38,10 @@ class ProductDetailViewModel @Inject constructor(
     ))
     val uiState = _uiState.asStateFlow()
 
+    init {
+        listenCart()
+    }
+
     fun handleAction(action: ProductDetailAction){
         when(action){
             ProductDetailAction.AddProduct -> {
@@ -45,6 +52,26 @@ class ProductDetailViewModel @Inject constructor(
             }
             ProductDetailAction.RemoveProduct -> {
                 removeProduct()
+            }
+
+            ProductDetailAction.OnCartClick -> {
+                viewModelScope.launch { navigator.navigate(CartScreenRoute) }
+            }
+        }
+    }
+
+    private fun listenCart(){
+        viewModelScope.launch {
+            cacheManager.cartCache.collectLatest { cachedProducts ->
+                val product = _uiState.value
+                val totalPrice = cachedProducts.sumOf { it.price * it.count }
+                val cachedProduct = cachedProducts.find { it.id == product.id }
+                _uiState.update {
+                    it.copy(
+                        count = cachedProduct?.count ?: 0,
+                        cartPrice = totalPrice
+                    )
+                }
             }
         }
     }
@@ -60,23 +87,11 @@ class ProductDetailViewModel @Inject constructor(
                 count = product.count
             )
         )
-
-        val updatedCartPrice = _uiState.value.cartPrice + product.price
-        _uiState.value = product.copy(
-            count = product.count + 1,
-            cartPrice = updatedCartPrice,
-        )
     }
 
     private fun removeProduct(){
         val product = _uiState.value
         cacheManager.decreaseCountById(product.id)
-
-        val updatedCartPrice = _uiState.value.cartPrice - product.price
-        _uiState.value = product.copy(
-            count = product.count - 1,
-            cartPrice = updatedCartPrice
-        )
     }
 
 }

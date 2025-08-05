@@ -6,7 +6,7 @@ data class ProductDetailUiState(
     val title: String,
     val id: String = "",
     val name: String = "",
-    val price: Double = 0.0,
+    val price: Double = 0.00,
     val cartPrice: Double = 0.00,
     val attribute: String = "",
     val imageUrl: String = "",
@@ -16,4 +16,6 @@ data class ProductDetailUiState(
         get() {
             return cartPrice.formatAsPriceTr()
         }
+    val showCartTotalButton: Boolean
+        get() = cartPrice > 0
 }
