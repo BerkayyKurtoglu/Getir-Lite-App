@@ -18,6 +18,7 @@ import com.berkay.ui.theme.GetirColors
 fun GetirScaffold(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
     content: @Composable (innerPadding: PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -38,6 +39,7 @@ fun GetirScaffold(
                 topBar()
             }
         },
+        bottomBar = bottomBar
     ) { innerPadding ->
         content(innerPadding)
     }
