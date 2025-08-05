@@ -10,6 +10,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
@@ -38,9 +39,23 @@ internal fun Project.addKsp(library: String, versionCatalog: VersionCatalog = li
     }
 }
 
+internal fun Project.addProject(projectName: String) {
+    dependencies {
+        add("implementation", project(projectName))
+    }
+}
+
 internal fun Project.addTestImplementation(library: String, versionCatalog: VersionCatalog = libs) {
     dependencies {
         add("testImplementation", versionCatalog.findLibrary(library).get())
+    }
+}
+
+internal fun Project.addTestPlatformImplementation(
+    library: String, versionCatalog: VersionCatalog = libs
+) {
+    dependencies {
+        add("testImplementation", platform(versionCatalog.findLibrary(library).get()))
     }
 }
 
@@ -92,6 +107,7 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
         addImplementation(PluginConstants.Libraries.AndroidxUiGraphics)
         addImplementation(PluginConstants.Libraries.AndroidxUiToolingPreview)
         addImplementation(PluginConstants.Libraries.AndroidxNavigation)
+        addImplementation(PluginConstants.Libraries.ComposeAnimation)
 
         addDebugImplementation(PluginConstants.Libraries.AndroidxUiTooling)
         addDebugImplementation(PluginConstants.Libraries.AndroidxUiTestManifest)

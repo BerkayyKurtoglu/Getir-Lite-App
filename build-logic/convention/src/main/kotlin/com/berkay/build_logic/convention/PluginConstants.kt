@@ -7,6 +7,7 @@ object PluginConstants {
         const val ComposePlugin = "org.jetbrains.kotlin.plugin.compose"
         const val TestInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         const val ConsumerRules = "consumer-rules.pro"
+        const val JavaLibrary = "java-library"
         const val MavenPublish = "maven-publish"
         const val ProguardRules = "proguard-rules.pro"
         const val ProguardAndroidRules = "proguard-android.txt"
@@ -47,6 +48,14 @@ object PluginConstants {
         const val Test_turbine = "1.0.0"
     }
 
+    object Projects {
+        const val NETWORK = ":network"
+        const val CORE_DATA = ":core:data"
+        const val CORE_DOMAIN = ":core:domain"
+        const val UI = ":ui"
+        const val TEST = ":test"
+    }
+
     object Libraries {
         // Compose & AndroidX
         const val AndroidxComposeBom = "androidx.compose.bom"
@@ -64,6 +73,8 @@ object PluginConstants {
         const val AndroidxUiTestManifest = "androidx-ui-test-manifest"
         const val AndroidxUiTestJunit4 = "androidx.ui.test.junit4"
         const val AndroidxNavigation = "androidx-navigation"
+        const val ComposeConstraintLayout = "androidx-constraintlayout-compose"
+        const val ComposeAnimation = "androidx-animation"
 
         // Kotlin & Coroutines
         const val KotlinGradle = "kotlin.gradle"
@@ -73,6 +84,7 @@ object PluginConstants {
         const val KotlinxCoroutinesAndroid = "kotlinx.coroutines.android"
         const val KotlinxCoroutines = "kotlinx.coroutines"
         const val KotlinSerializationJson = "kotlinx-serialization-json"
+        const val KotlinxCollectionsImmutable = "kotlinx-collections-immutable"
 
         // Gradle Plugins
         const val AndroidGradlePlugin = "android.gradleplugin"
@@ -97,31 +109,38 @@ object PluginConstants {
         // Google
         const val GoogleGson = "google.gson"
 
+        // Coil
+        const val COIL = "coil"
+        const val COIL_COMPOSE = "coil-compose"
+
         // Test
-        const val Junit = "junit"
-        const val AndroidxJunit = "androidx.junit"
-        const val AndroidxEspressoCore = "androidx.espresso.core"
-        const val TestJunitBom = "test.junit.bom"
-        const val TestJunitPlatformRunner = "test.junit.platform.runner"
-        const val TestJunitJupiter = "test.junit.jupiter"
-        const val TestJunitJupiterApi = "test.junit.jupiter.api"
-        const val TestJunitJupiterEngine = "test.junit.jupiter.engine"
-        const val TestJunitFour = "test.junit.four"
-        const val TestCoreTesting = "test.core.testing"
-        const val TestJson = "test.json"
-        const val TestMockitoKotlin = "test.mockito.kotlin"
-        const val TestKotlinxCoroutines = "test.kotlinx.coroutines"
-        const val TestMockk = "test.mockk"
-        const val TestTurbine = "test.turbine"
-        const val TestAll = "test.all"
+        const val JUNIT = "junit"
+        const val ANDROIDX_JUNIT = "androidx-junit"
+        const val ANDROIDX_ESPRESSO_CORE = "androidx-espresso-core"
+        const val TEST_JUNIT_BOM = "test-junit-bom"
+        const val TEST_JUNIT_PLATFORM_RUNNER = "test-junit-platform-runner"
+        const val TEST_JUNIT_JUPITER = "test-junit-jupiter"
+        const val TEST_JUNIT_JUPITER_API = "test-junit-jupiter-api"
+        const val TEST_JUNIT_JUPITER_ENGINE = "test-junit-jupiter-engine"
+        const val TEST_JUNIT_JUPITER_PARAMS = "test-junit-jupiter-params"
+        const val TEST_JUNIT_FOUR = "test-junit-four"
+        const val TEST_CORE_TESTING = "test-core-testing"
+        const val TEST_JSON = "test-json"
+        const val TEST_MOCKITO_KOTLIN = "test-mockito-kotlin"
+        const val TEST_KOTLINX_COROUTINES = "test-kotlinx-coroutines"
+        const val TEST_MOCKK = "test-mockk"
+        const val TEST_TURBINE = "test-turbine"
+        const val TestAll = "test-all"
     }
 
     object Plugins {
         // Android Gradle Plugins
         const val AndroidApplication = "com.android.application"
         const val AndroidLibrary = "com.android.library"
+        const val AndroidJunit5  = "de.mannodermaus.android-junit5"
 
         // Kotlin Plugins
+        const val JetbrainsKotlinJvm = "org.jetbrains.kotlin.jvm"
         const val KotlinAndroid = "org.jetbrains.kotlin.android"
         const val KotlinParcelize = "org.jetbrains.kotlin.plugin.parcelize"
         const val KotlinCompose = "org.jetbrains.kotlin.plugin.compose"
