@@ -39,25 +39,27 @@ fun ProductsScreen(
             .fillMaxSize()
             .padding(contentInnerPadding),
     ) {
-        item {
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp)
-                    .background(LocalColorScheme.current.mainGetirWhite)
-                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 8.dp),
-            ) {
-                items(horizontalProducts) { product ->
-                    ProductCard(
-                        isLoading = isLoading,
-                        productUiModel = product,
-                        onAddClick = { onAddHorizontalProductClick(product) },
-                        onRemoveClick = { onRemoveHorizontalProductClick(product) },
-                        onProductClick = {
-                            onProductClick(product)
-                        }
-                    )
+        if (horizontalProducts.isNotEmpty()){
+            item {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp)
+                        .background(LocalColorScheme.current.mainGetirWhite)
+                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 8.dp),
+                ) {
+                    items(horizontalProducts) { product ->
+                        ProductCard(
+                            isLoading = isLoading,
+                            productUiModel = product,
+                            onAddClick = { onAddHorizontalProductClick(product) },
+                            onRemoveClick = { onRemoveHorizontalProductClick(product) },
+                            onProductClick = {
+                                onProductClick(product)
+                            }
+                        )
+                    }
                 }
             }
         }
