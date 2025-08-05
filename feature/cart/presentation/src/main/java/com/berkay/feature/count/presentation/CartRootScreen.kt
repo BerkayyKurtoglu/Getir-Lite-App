@@ -45,6 +45,7 @@ fun CartRootScreen() {
                 title = uiState.confirmCheckoutDialogState.title,
                 confirmText = uiState.confirmCheckoutDialogState.confirmText,
                 dismissText = uiState.confirmCheckoutDialogState.dismissText,
+                totalPrice = uiState.confirmDialogPriceText,
                 onConfirm = {
                     viewModel.handleAction(CartAction.OnConfirmCheckoutDialog)
                 },

@@ -25,6 +25,7 @@ import com.berkay.ui.theme.LocalColorScheme
 fun CheckoutConfirmDialog(
     modifier: Modifier = Modifier,
     title: String,
+    totalPrice: String,
     confirmText: String,
     dismissText: String,
     onConfirm: () -> Unit,
@@ -46,6 +47,17 @@ fun CheckoutConfirmDialog(
         ) {
             Text(
                 text = title,
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                ),
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = totalPrice,
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold,
                     color = Color.Black

@@ -25,6 +25,7 @@ class CartViewModel @Inject constructor(
         bottomButtonText = "Siparişi Tamamla",
         confirmCheckoutDialogState = ConfirmCheckoutDialogState(
             title = "Siparişiniz alınacak onaylıyor musunuz ?",
+            pricePrefixText = "Toplam Tutar : ",
             confirmText = "Evet",
             dismissText = "Hayır"
         )

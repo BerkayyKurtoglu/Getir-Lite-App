@@ -19,12 +19,16 @@ data class CartUiState(
     val totalPriceText: String
         get() = totalPrice.formatAsPriceTr()
 
+    val confirmDialogPriceText: String
+        get() = "${confirmCheckoutDialogState.pricePrefixText} $totalPriceText"
+
     val showRemoveAllButton: Boolean
         get() = cartProducts.isNotEmpty()
 }
 
 data class ConfirmCheckoutDialogState(
     val title: String = "",
+    val pricePrefixText: String = "",
     val confirmText: String = "",
     val dismissText: String = ""
 )
