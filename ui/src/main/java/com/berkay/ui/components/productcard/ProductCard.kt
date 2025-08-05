@@ -1,6 +1,7 @@
 package com.berkay.ui.components.productcard
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +29,7 @@ fun ProductCard(
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
     productUiModel: ProductUiModel,
+    onProductClick: () -> Unit,
     onAddClick: () -> Unit,
     onRemoveClick: () -> Unit,
 ) {
@@ -51,6 +53,9 @@ fun ProductCard(
                         shape = RoundedCornerShape(16.dp)
                     )
                     .clip(RoundedCornerShape(16.dp))
+                    .clickable {
+                        onProductClick()
+                    }
             )
             CardControlButton(
                 count = productUiModel.count,

@@ -1,5 +1,8 @@
 package com.berkay.ui.components.productcard
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class ProductUiModel(
     val id: String,
     val name: String,
