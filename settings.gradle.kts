@@ -41,3 +41,13 @@ include(":feature:products:presentation")
 include(":feature:common")
 include(":feature:common:domain")
 include(":feature:common:data")
+include(":core:presentation")
+
+include(":feature:detail")
+include(":feature:detail:presentation")
+include(":feature:detail:contract")
+
+include(":feature:cart")
+include(":feature:cart:presentation")
+include(":feature:cart:contract")
+include(":test")
