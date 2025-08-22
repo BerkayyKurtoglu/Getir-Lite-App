@@ -12,6 +12,9 @@ import com.berkay.feature.detail.presentation.ProductDetailRootScreen
 import com.berkay.feature.products.contract.ProductsScreenRoute
 import com.berkay.feature.products.presentation.ProductsRootScreen
 import com.berkay.getirlite.navigation.NavigationHandler
+import com.berkay.getirlite.navigation.cartRootScreen
+import com.berkay.getirlite.navigation.productDetailScreen
+import com.berkay.getirlite.navigation.productsRootScreen
 import com.berkay.getirlite.ui.enterTransition
 import com.berkay.getirlite.ui.exitTransition
 import com.berkay.getirlite.ui.popEnterTransition
@@ -36,15 +39,9 @@ fun App(
         popEnterTransition = popEnterTransition,
         popExitTransition = popExitTransition
     ) {
-        composable<ProductsScreenRoute> {
-            ProductsRootScreen()
-        }
-        composable<ProductDetailRoute> {
-            ProductDetailRootScreen()
-        }
-        composable<CartScreenRoute> {
-            CartRootScreen()
-        }
+        productsRootScreen()
+        productDetailScreen()
+        cartRootScreen()
     }
 
 }
