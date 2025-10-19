@@ -61,6 +61,28 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
     }
 
     @Test
+    fun `when ViewModel is initialized, then initial state should be set correctly`() {
+        // given
+        val expectedState = ProductDetailUiState(
+            title = "Ürün Detayı",
+            id = "123",
+            name = "Ürün",
+            price = 45.0,
+            cartPrice = 45.0,
+            attribute = "att",
+            imageUrl = "url",
+            count = 3
+        )
+
+        // when
+        initViewModel()
+        val actualState = viewModel.uiState.value
+
+        // then
+        Assertions.assertEquals(expectedState, actualState)
+    }
+
+    @Test
     fun `when cart cache emits, then uiState should be updated with correct count and cartPrice`() {
         runTest {
             // given
@@ -96,7 +118,7 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
     }
 
     @Test
-    fun `when AddProduct action, then cacheManager's increaseCountByIdOrAdd is invoked with correct CartCacheModel`() {
+    fun `when AddProduct event is handled, then cacheManager's increaseCountByIdOrAdd is invoked with correct CartCacheModel`() {
         runTest {
             // given
             val productId = "1"
@@ -128,7 +150,7 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
 
             // when
             initViewModel()
-            viewModel.handleAction(ProductDetailAction.AddProduct)
+            viewModel.handleEvent(ProductDetailAction.AddProduct)
 
             // then
             val expectedCacheModel = CartCacheModel(
@@ -143,7 +165,7 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
     }
 
     @Test
-    fun `when RemoveProduct action, then cacheManager's decreaseCountById is invoked with correct id`() {
+    fun `when RemoveProduct event is handled, then cacheManager's decreaseCountById is invoked with correct id`() {
         runTest {
             // given
             val productId = "1"
@@ -178,11 +200,37 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
 
             // when
             initViewModel()
-            viewModel.handleAction(ProductDetailAction.RemoveProduct)
+            viewModel.handleEvent(ProductDetailAction.RemoveProduct)
 
             // then
             verify(exactly = 1) { cacheManager.decreaseCountById(productId) }
         }
+    }
+
+    @Test
+    fun `when OnBackClick event is handled, then navigator navigateUp should be called`() = runTest {
+        // given
+        every { navigator.navigateUp() } returns Unit
+
+        // when
+        initViewModel()
+        viewModel.handleEvent(ProductDetailAction.OnBackClick)
+
+        // then
+        verify(exactly = 1) { navigator.navigateUp() }
+    }
+
+    @Test
+    fun `when OnCartClick event is handled, then navigator navigate to cart should be called`() = runTest {
+        // given
+        every { navigator.navigate(any()) } returns Unit
+
+        // when
+        initViewModel()
+        viewModel.handleEvent(ProductDetailAction.OnCartClick)
+
+        // then
+        verify(exactly = 1) { navigator.navigate(any()) }
     }
 
     private fun initViewModel() {
@@ -192,6 +240,4 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
             savedStateHandle = savedStateHandle
         )
     }
-
-
 }

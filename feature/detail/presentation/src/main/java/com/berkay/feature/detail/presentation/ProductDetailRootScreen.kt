@@ -22,10 +22,10 @@ fun ProductDetailRootScreen() {
                 cartPrice = uiState.cartPriceString,
                 showCartTotalButton = uiState.showCartTotalButton,
                 onBackClicked = {
-                    viewModel.handleAction(ProductDetailAction.OnBackClick)
+                    viewModel.handleEvent(ProductDetailAction.OnBackClick)
                 },
                 onCartClicked = {
-                    viewModel.handleAction(ProductDetailAction.OnCartClick)
+                    viewModel.handleEvent(ProductDetailAction.OnCartClick)
                 }
             )
         },
@@ -33,10 +33,10 @@ fun ProductDetailRootScreen() {
             ProductDetailBottomBar(
                 productCount = uiState.count,
                 onAddProductClick = {
-                    viewModel.handleAction(ProductDetailAction.AddProduct)
+                    viewModel.handleEvent(ProductDetailAction.AddProduct)
                 },
                 onRemoveProductClick = {
-                    viewModel.handleAction(ProductDetailAction.RemoveProduct)
+                    viewModel.handleEvent(ProductDetailAction.RemoveProduct)
                 }
             )
         }
