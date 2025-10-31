@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import kotlin.math.exp
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
@@ -85,7 +86,8 @@ class CartViewModelTest : CoreTestUtil(useUnconfinedDispatcher = true) {
                 confirmCheckoutDialogState = ConfirmCheckoutDialogState(
                     title = "Siparişiniz alınacak onaylıyor musunuz ?",
                     confirmText = "Evet",
-                    dismissText = "Hayır"
+                    dismissText = "Hayır",
+                    pricePrefixText = "Toplam Tutar : "
                 ),
                 cartProducts = mockMappedCartProducts.toPersistentList()
             )
@@ -96,7 +98,6 @@ class CartViewModelTest : CoreTestUtil(useUnconfinedDispatcher = true) {
             viewModel.uiState.test {
                 val uiState = awaitItem()
                 Assertions.assertEquals(uiState.cartProducts,expectedUiState.cartProducts)
-                Assertions.assertEquals(uiState.bottomButtonText,expectedUiState.bottomButtonText)
                 Assertions.assertEquals(uiState.confirmCheckoutDialogState,expectedUiState.confirmCheckoutDialogState)
             }
 

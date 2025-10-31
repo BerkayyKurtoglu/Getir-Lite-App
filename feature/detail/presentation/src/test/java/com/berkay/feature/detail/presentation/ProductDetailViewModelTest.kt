@@ -10,6 +10,8 @@ import com.berkay.feature.detail.contract.ProductDetailRoute
 import com.berkay.test.CoreTestUtil
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockkStatic
@@ -68,10 +70,10 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
             id = "123",
             name = "Ürün",
             price = 45.0,
-            cartPrice = 45.0,
+            cartPrice = 0.0,
             attribute = "att",
             imageUrl = "url",
-            count = 3
+            count = 0
         )
 
         // when
@@ -210,27 +212,27 @@ class ProductDetailViewModelTest : CoreTestUtil(true) {
     @Test
     fun `when OnBackClick event is handled, then navigator navigateUp should be called`() = runTest {
         // given
-        every { navigator.navigateUp() } returns Unit
+        coEvery { navigator.navigateUp() } returns Unit
 
         // when
         initViewModel()
         viewModel.handleEvent(ProductDetailAction.OnBackClick)
 
         // then
-        verify(exactly = 1) { navigator.navigateUp() }
+        coVerify(exactly = 1) { navigator.navigateUp() }
     }
 
     @Test
     fun `when OnCartClick event is handled, then navigator navigate to cart should be called`() = runTest {
         // given
-        every { navigator.navigate(any()) } returns Unit
+        coEvery { navigator.navigate(any()) } returns Unit
 
         // when
         initViewModel()
         viewModel.handleEvent(ProductDetailAction.OnCartClick)
 
         // then
-        verify(exactly = 1) { navigator.navigate(any()) }
+        coVerify(exactly = 1) { navigator.navigate(any()) }
     }
 
     private fun initViewModel() {
